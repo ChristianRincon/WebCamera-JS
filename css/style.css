@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/fondo-marco.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+h1{
+    text-align: center;
+    color: aliceblue;
+}
+
+.marcoCamara{
+    display: grid;
+    justify-content: center;
+    padding: 1%;    
+}
+
+.marcoCamara {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.botonContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.boton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+    background-color: #dd8f1b;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.boton:hover{
+    transform: scale(1.1);
+    transition: 300ms;
+}
+
+
