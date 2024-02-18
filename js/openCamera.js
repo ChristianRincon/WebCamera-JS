@@ -3,6 +3,7 @@ const boton = document.getElementById('capturarFoto');
 const btnVoz = document.getElementById('capturaVoz');
 const contenedorBotones = document.getElementById('btnContainer');
 const titulo = document.getElementById('titulo');
+const audio = document.getElementById("audio");
 
 let mediaStream = null;
 
@@ -41,6 +42,7 @@ function capturaDescarga() {
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/jpeg');
     link.download = 'captura.jpg';
+    audio.play();
     link.click();
 }
 
@@ -55,36 +57,42 @@ recognition.addEventListener('result', event => {
     console.log(event.results) // Podemos ver dicha lista en el navegador
 
     if (transcript.toLowerCase().includes('foto')) {
+        camara.style.transform = "scale(1.098)";
+        camara.style.transition = "1000ms";
+        camara.style.boxShadow = "2px 2px 30px 30px red";
         capturaDescarga();
-        titulo.style.transform = "scale(1.4)";
-        titulo.style.transition = "1000ms";
+        var mensaje = new SpeechSynthesisUtterance("Tremenda foto crack!")
+        mensaje.rate = 0.8;
+        mensaje.pitch = 0.9;
+        window.speechSynthesis.speak(mensaje);
         titulo.textContent= 'Hermosa voz y hermosa foto';
     }
 
     setTimeout(() => {
-        titulo.style.transform = "scale(1)";
-        titulo.style.transition = "1000ms";
         titulo.textContent = 'Intenta con nuevas fotos';
+        camara.style.transform = "scale(1)";
+        camara.style.boxShadow = "none";
     }, 2000);
 });
 
 // Evento para capturar imagen por medio del boton
 capturarFoto.addEventListener('click', () =>{
+    camara.style.transform = "scale(1.098)";
+    camara.style.transition = "1000ms";
+    camara.style.boxShadow = "2px 2px 30px 30px red";
     capturaDescarga();
-    titulo.style.transform = "scale(1.4)";
-    titulo.style.transition = "1000ms";
     titulo.textContent = '¡Tremenda captura!';
 
     setTimeout(() => {
-        titulo.style.transform = "scale(1)";
-        titulo.style.transition = "1000ms";
         titulo.textContent = 'Intenta con nuevas fotos';
+        camara.style.transform = "scale(1)";
+        camara.style.boxShadow = "none"
     }, 2000);
 })
 
 //Evento para capturar imagen por medio de la voz (Recomiendo decir "foto" lo más claro posible)
 btnVoz.addEventListener('click', () =>{
-    titulo.textContent= 'Di la palabra "Foto" ';
+    titulo.textContent= 'Di la palabra "Foto"';
     recognition.start();
 })
 
