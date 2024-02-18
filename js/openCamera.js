@@ -41,7 +41,7 @@ function capturaDescarga() {
 
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/jpeg');
-    link.download = 'captura.jpg';
+    link.download = 'capturaWeb.jpg';
     audio.play();
     link.click();
 }
